@@ -22,3 +22,4 @@ class AuthPage:
 
 
 auth_page = AuthPage()
+
