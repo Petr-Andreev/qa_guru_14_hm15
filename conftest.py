@@ -3,8 +3,8 @@ from selene import browser
 from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture(scope='function', params=[(1920, 1080), (1280, 720), (390, 844)],
-                ids=['Full HD', 'HD', 'IPhone 12 Pro'])
+@pytest.fixture(scope='function', params=[(1920, 1080), (1280, 720), (390, 844), (360, 740)],
+                ids=['Full HD', 'HD', 'IPhone 12 Pro', 'Galaxy S8+'])
 def setup_browser_management(request):
     width, height = request.param
     browser.config.window_width = width
@@ -13,7 +13,7 @@ def setup_browser_management(request):
     options = Options()
     options.page_load_strategy.page_load_strategy = 'eager'
 
-    if width > 800:
+    if width >= 800:
         yield 'desktop'
     else:
         yield 'mobile'
@@ -36,7 +36,7 @@ def setup_browser_mobile(request):
     browser.quit()
 
 
-@pytest.fixture(scope='function', params=[(1020, 720), (1920, 1080), (2560, 1440)],
+@pytest.fixture(scope='function', params=[(1080, 720), (1920, 1080), (2560, 1440)],
                 ids=['HD', 'Full HD', 'QHD'])
 def setup_browser_desktop(request):
     width, height = request.param
