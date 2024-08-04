@@ -19,10 +19,10 @@ def test_sign_in_mobile(setup_browser_management):
     auth_page.sign_in_mobile()
 
 
-@pytest.mark.parametrize("setup_browser", [(1920, 1080), (430, 932)], indirect=True)
-def test_sign_in_indirect(setup_browser):
+@pytest.mark.parametrize("setup_browser_management", [(1920, 1080), (430, 932)], indirect=True)
+def test_sign_in_indirect(setup_browser_management):
     browser.open('/')
-    if setup_browser == 'desktop':
+    if setup_browser_management == 'desktop':
         auth_page.sign_in_desktop()
     else:
         auth_page.sign_in_mobile()
